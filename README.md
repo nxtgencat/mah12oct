@@ -1,32 +1,55 @@
-# React + TypeScript + Vite
+# Athena Library — Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A responsive Library Management System built with **React + Vite + TypeScript + Tailwind CSS v4**, **Context API** state management, **React Router** navigation, and a live **DummyJSON** book catalog. All library data persists in `localStorage`.
 
-Currently, two official plugins are available:
+## Demo credentials
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Email: `admin@library.com`
+- Password: `admin123`
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Module | What's inside |
+|---|---|
+| **Authentication** | Login, register, forgot-password UI, validation, show/hide password, protected routes, logout, session in `localStorage` |
+| **Dashboard** | Total books, members, issued, available, overdue, categories, fine collected, recent activity feed, quick actions |
+| **Books** | DummyJSON-powered catalog (30 titles + graceful local fallback), add/edit/delete, details page, search (title/author/ISBN), category + author filters, title sort, pagination, skeletons & error state |
+| **Members** | Full CRUD with validation, search, pagination, profile view with loan history |
+| **Issue / Return** | Issue with availability update, duplicate-issue guard, returns, due-date tracking, filterable history |
+| **Fines** | Automatic $2/day overdue calculation, paid/unpaid toggle (UI-only), member search, overdue list |
+| **Categories** | Add/edit/delete with duplicate + in-use guards, shelf counts |
+| **Reports** | Circulation chart, category counts, overdue & collection summaries (demo data where noted) |
 
-## Expanding the Oxlint configuration
+## Stack
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+- `pnpm` · React 19 · Vite · TypeScript · Tailwind CSS v4 · `react-router` · `lucide-react` · `oxlint`
+- No form/toast/chart libraries — validation, toasts, and charts are small hand-rolled modules to keep the bundle lean.
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+## Scripts
+
+```sh
+pnpm install
+pnpm run dev      # start dev server
+pnpm run build    # typecheck + production build
+pnpm run lint     # oxlint
+pnpm run preview  # serve the production build
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Data & persistence
+
+- Catalog: `https://dummyjson.com/products?limit=30` mapped to book records (cover, author, ISBN, publisher, category, year, copies). If the API is unreachable, a bundled 12-book catalog is used and an error banner with retry is shown.
+- `localStorage` keys: `lms_books_v1`, `lms_members_v1`, `lms_categories_v1`, `lms_issues_v1`, `lms_activities_v1`, `lms_users`, `lms_session`.
+- Loans run 14 days; overdue fines accrue at $2/day.
+
+## Project structure
+
+```
+src/
+  types.ts            # domain models
+  lib/                # api mapper, date/currency/storage utils
+  data/seed.ts        # fallback books, members, categories, demo chart data
+  context/            # AuthContext, LibraryContext, ToastContext
+  components/         # ui kit, Modal, Layout, forms
+  pages/              # auth + 8 modules
+  App.tsx             # providers + protected routes
+```
