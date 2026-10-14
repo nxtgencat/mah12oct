@@ -1,5 +1,6 @@
 import type { Book } from "../types";
 import { fallbackBooks } from "../data/seed";
+import { makeCover } from "./cover";
 
 interface DummyProduct {
   id: number;
@@ -9,8 +10,6 @@ interface DummyProduct {
   price: number;
   brand?: string;
   sku?: string;
-  thumbnail?: string;
-  images?: string[];
 }
 
 const BOOK_CATEGORIES = [
@@ -40,13 +39,14 @@ function hashStr(s: string): number {
 export function mapProductToBook(p: DummyProduct, index: number): Book {
   const h = hashStr(p.title + p.id);
   const category = BOOK_CATEGORIES[h % BOOK_CATEGORIES.length];
+  const author = p.brand ? titleCase(p.brand) : `Author ${String.fromCharCode(65 + (h % 26))}. Writer`;
   const total = 2 + (h % 6);
   const available = Math.max(0, total - (h % 3));
   const year = 1998 + (h % 27);
   return {
     id: `api_${p.id}`,
     title: p.title,
-    author: p.brand ? titleCase(p.brand) : `Author ${String.fromCharCode(65 + (h % 26))}. Writer`,
+    author,
     isbn: p.sku ?? `978-1-${String(10000 + (h % 89999))}`,
     publisher: p.brand ? `${titleCase(p.brand)} Press` : "Meridian Press",
     category,
@@ -54,7 +54,9 @@ export function mapProductToBook(p: DummyProduct, index: number): Book {
     availableCopies: index < 2 ? 0 : available,
     totalCopies: total,
     description: p.description,
-    cover: p.thumbnail ?? p.images?.[0] ?? "",
+    // Generated cover: DummyJSON thumbnails are product photos on an
+    // unreliable CDN — real book-style art always renders instead.
+    cover: makeCover(p.title, author, category),
   };
 }
 

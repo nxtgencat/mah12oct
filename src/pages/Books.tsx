@@ -14,7 +14,7 @@ function Cover({ book }: { book: Book }) {
   const [failed, setFailed] = useState(false);
   if (!book.cover || failed) {
     return (
-      <div className="flex aspect-[5/3] w-full items-center justify-center bg-gradient-to-br from-primary-800 to-primary-500 p-4 text-center">
+      <div className="flex aspect-[2/3] w-full items-center justify-center bg-gradient-to-br from-primary-800 to-primary-500 p-4 text-center">
         <p className="line-clamp-2 text-[15px] font-bold leading-snug text-white">{book.title}</p>
       </div>
     );
@@ -25,7 +25,7 @@ function Cover({ book }: { book: Book }) {
       alt={`Cover of ${book.title}`}
       loading="lazy"
       onError={() => setFailed(true)}
-      className="aspect-[5/3] w-full object-cover"
+      className="aspect-[2/3] w-full object-cover"
     />
   );
 }

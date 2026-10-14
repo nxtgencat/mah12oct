@@ -4,6 +4,7 @@ import type { Activity, Book, Category, FineRecord, Issue, Member } from "../typ
 import { FINE_PER_DAY, LOAN_DAYS } from "../types";
 import { seedCategories, seedMembers } from "../data/seed";
 import { fetchBooksFromAPI, getFallbackBooks } from "../lib/api";
+import { makeCover } from "../lib/cover";
 import { addDaysISO, daysBetween, loadJSON, saveJSON, todayISO, uid } from "../lib/utils";
 
 interface LibraryContextValue {
@@ -43,7 +44,7 @@ interface LibraryContextValue {
 const LibraryContext = createContext<LibraryContextValue | null>(null);
 
 const K = {
-  books: "lms_books_v1",
+  books: "lms_books_v2",
   members: "lms_members_v1",
   categories: "lms_categories_v1",
   issues: "lms_issues_v1",
@@ -149,6 +150,12 @@ export function LibraryProvider({ children }: { children: ReactNode }) {
   );
 
   useEffect(() => {
+    // Drop the v1 book cache — it stored unreliable CDN thumbnails.
+    try {
+      localStorage.removeItem("lms_books_v1");
+    } catch {
+      /* ignore */
+    }
     loadBooks(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -230,7 +237,11 @@ export function LibraryProvider({ children }: { children: ReactNode }) {
       apiSource,
       reloadBooks: () => loadBooks(true),
       addBook: (b) => {
-        const next: Book = { ...b, id: uid("book") };
+        const next: Book = {
+          ...b,
+          id: uid("book"),
+          cover: b.cover.trim() ? b.cover.trim() : makeCover(b.title, b.author, b.category),
+        };
         setBooks((prev) => [next, ...prev]);
         pushActivity(`New book added: ${next.title}`, "book", next.author);
       },
