@@ -66,7 +66,7 @@ export function LoginPage() {
                 onClick={() => setShow((s) => !s)}
                 aria-label={show ? "Hide password" : "Show password"}
                 aria-pressed={show}
-                className="absolute right-2 top-1/2 -translate-y-1/2 rounded p-1.5 text-gray-400 transition hover:bg-gray-100 hover:text-gray-700"
+                className="absolute right-2 top-1/2 -translate-y-1/2 rounded p-1.5 text-gray-400 transition hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-white/10 dark:hover:text-gray-200"
               >
                 {show ? <EyeOff size={16} /> : <Eye size={16} />}
               </button>
@@ -74,7 +74,7 @@ export function LoginPage() {
           </Field>
           <div className="flex items-center justify-between">
             <span className="t-caption">Demo: admin@library.com / admin123</span>
-            <Link to="/forgot" className="text-[13px] font-semibold text-primary-700 hover:underline">
+            <Link to="/forgot" className="text-[13px] font-semibold text-primary-700 hover:underline dark:text-primary-300">
               Forgot password?
             </Link>
           </div>

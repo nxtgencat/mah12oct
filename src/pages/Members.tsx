@@ -57,7 +57,7 @@ export function MembersPage() {
             onChange={(e) => { setQ(e.target.value); setPage(1); }}
             placeholder="Search name, email, membership ID, phone…"
             aria-label="Search members"
-            className="w-full rounded-sm border border-gray-300 bg-white py-2 pl-9 pr-3 text-[13.5px] outline-none transition placeholder:text-gray-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-100"
+            className="w-full rounded-sm border border-gray-300 bg-white py-2 pl-9 pr-3 text-[13.5px] outline-none transition placeholder:text-gray-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 dark:border-night-700 dark:bg-night-800 dark:text-gray-100"
           />
         </div>
       </Card>
@@ -79,7 +79,7 @@ export function MembersPage() {
             <div className="overflow-x-auto">
               <table className="w-full min-w-[720px] text-left text-[13.5px]">
                 <thead>
-                  <tr className="border-b border-gray-200 bg-gray-50 text-[12px] uppercase tracking-wide text-ink-500">
+                  <tr className="border-b border-gray-200 bg-gray-50 text-[12px] uppercase tracking-wide text-ink-500 dark:border-white/10 dark:bg-white/5 dark:text-gray-400">
                     <th scope="col" className="px-4 py-3 font-semibold">Member</th>
                     <th scope="col" className="px-4 py-3 font-semibold">Contact</th>
                     <th scope="col" className="px-4 py-3 font-semibold">Membership</th>
@@ -87,32 +87,32 @@ export function MembersPage() {
                     <th scope="col" className="px-4 py-3 text-right font-semibold">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="anim-list-in divide-y divide-gray-100">
+                <tbody className="anim-list-in divide-y divide-gray-100 dark:divide-white/10">
                   {items.map((m) => (
-                    <tr key={m.id} className="transition hover:bg-gray-50/70">
+                    <tr key={m.id} className="transition hover:bg-gray-50/70 dark:hover:bg-white/5">
                       <td className="px-4 py-3">
-                        <Link to={`/members/${m.id}`} className="font-semibold text-ink-900 hover:text-primary-700 hover:underline">
+                        <Link to={`/members/${m.id}`} className="font-semibold text-ink-900 hover:text-primary-700 hover:underline dark:text-gray-100 dark:hover:text-primary-300">
                           {m.name}
                         </Link>
                         <p className="t-caption">{m.membershipId}</p>
                       </td>
                       <td className="px-4 py-3">
-                        <p className="flex items-center gap-1.5 text-ink-700"><Mail size={13} className="text-gray-400" aria-hidden="true" />{m.email}</p>
-                        <p className="mt-0.5 flex items-center gap-1.5 text-ink-500"><Phone size={13} className="text-gray-400" aria-hidden="true" />{m.phone}</p>
+                        <p className="flex items-center gap-1.5 text-ink-700 dark:text-gray-300"><Mail size={13} className="text-gray-400" aria-hidden="true" />{m.email}</p>
+                        <p className="mt-0.5 flex items-center gap-1.5 text-ink-500 dark:text-gray-400"><Phone size={13} className="text-gray-400" aria-hidden="true" />{m.phone}</p>
                       </td>
-                      <td className="px-4 py-3 text-ink-700">Joined {formatDate(m.joinedAt)}</td>
+                      <td className="px-4 py-3 text-ink-700 dark:text-gray-300">Joined {formatDate(m.joinedAt)}</td>
                       <td className="px-4 py-3">
                         <Badge tone={activeCount(m.id) > 0 ? "violet" : "gray"}>{activeCount(m.id)} active</Badge>
                       </td>
                       <td className="px-4 py-3">
                         <div className="flex justify-end gap-1.5">
-                          <Link to={`/members/${m.id}`} aria-label={`View ${m.name}`} className="rounded-sm border border-gray-300 bg-white p-1.5 text-ink-700 transition hover:bg-gray-50">
+                          <Link to={`/members/${m.id}`} aria-label={`View ${m.name}`} className="rounded-sm border border-gray-300 bg-white p-1.5 text-ink-700 transition hover:bg-gray-50 dark:border-night-700 dark:bg-night-800 dark:text-gray-200 dark:hover:bg-night-700">
                             <Eye size={14} aria-hidden="true" />
                           </Link>
-                          <button type="button" onClick={() => setModal({ mode: "edit", member: m })} aria-label={`Edit ${m.name}`} className="rounded-sm border border-gray-300 bg-white p-1.5 text-ink-700 transition hover:bg-gray-50">
+                          <button type="button" onClick={() => setModal({ mode: "edit", member: m })} aria-label={`Edit ${m.name}`} className="rounded-sm border border-gray-300 bg-white p-1.5 text-ink-700 transition hover:bg-gray-50 dark:border-night-700 dark:bg-night-800 dark:text-gray-200 dark:hover:bg-night-700">
                             <Pencil size={14} aria-hidden="true" />
                           </button>
-                          <button type="button" onClick={() => setDeleting(m)} aria-label={`Delete ${m.name}`} className="rounded-sm border border-gray-300 bg-white p-1.5 text-red-600 transition hover:bg-red-50">
+                          <button type="button" onClick={() => setDeleting(m)} aria-label={`Delete ${m.name}`} className="rounded-sm border border-gray-300 bg-white p-1.5 text-red-600 transition hover:bg-red-50 dark:border-night-700 dark:bg-night-800 dark:hover:bg-red-500/10">
                             <Trash2 size={14} aria-hidden="true" />
                           </button>
                         </div>
@@ -130,20 +130,20 @@ export function MembersPage() {
               <Card key={m.id} className="p-4">
                 <div className="flex items-start justify-between gap-2">
                   <div className="min-w-0">
-                    <Link to={`/members/${m.id}`} className="text-[15px] font-bold hover:text-primary-700">{m.name}</Link>
+                    <Link to={`/members/${m.id}`} className="text-[15px] font-bold hover:text-primary-700 dark:hover:text-primary-300">{m.name}</Link>
                     <p className="t-caption">{m.membershipId} · Joined {formatDate(m.joinedAt)}</p>
                   </div>
                   <Badge tone={activeCount(m.id) > 0 ? "violet" : "gray"}>{activeCount(m.id)} active</Badge>
                 </div>
                 <p className="t-muted mt-2 truncate">{m.email} · {m.phone}</p>
-                <div className="mt-3 flex gap-1.5 border-t border-gray-100 pt-3">
-                  <Link to={`/members/${m.id}`} className="inline-flex flex-1 items-center justify-center gap-1 rounded-sm border border-gray-300 px-2 py-1.5 text-[12.5px] font-semibold hover:bg-gray-50">
+                <div className="mt-3 flex gap-1.5 border-t border-gray-100 pt-3 dark:border-white/10">
+                  <Link to={`/members/${m.id}`} className="inline-flex flex-1 items-center justify-center gap-1 rounded-sm border border-gray-300 px-2 py-1.5 text-[12.5px] font-semibold hover:bg-gray-50 dark:border-night-700 dark:hover:bg-white/5">
                     <Eye size={13} aria-hidden="true" /> Profile
                   </Link>
-                  <button type="button" onClick={() => setModal({ mode: "edit", member: m })} aria-label={`Edit ${m.name}`} className="rounded-sm border border-gray-300 p-[7px] hover:bg-gray-50">
+                  <button type="button" onClick={() => setModal({ mode: "edit", member: m })} aria-label={`Edit ${m.name}`} className="rounded-sm border border-gray-300 p-[7px] hover:bg-gray-50 dark:border-night-700 dark:hover:bg-white/5">
                     <Pencil size={13} aria-hidden="true" />
                   </button>
-                  <button type="button" onClick={() => setDeleting(m)} aria-label={`Delete ${m.name}`} className="rounded-sm border border-gray-300 p-[7px] text-red-600 hover:bg-red-50">
+                  <button type="button" onClick={() => setDeleting(m)} aria-label={`Delete ${m.name}`} className="rounded-sm border border-gray-300 p-[7px] text-red-600 hover:bg-red-50 dark:border-night-700 dark:hover:bg-red-500/10">
                     <Trash2 size={13} aria-hidden="true" />
                   </button>
                 </div>

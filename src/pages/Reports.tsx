@@ -12,7 +12,7 @@ function Bars({ data, color }: { data: { label: string; value: number }[]; color
       {data.map((d) => (
         <div key={d.label} className="flex flex-1 flex-col items-center gap-1.5">
           <span className="t-caption font-semibold">{d.value}</span>
-          <div className="flex w-full flex-1 items-end rounded-sm bg-gray-100">
+          <div className="flex w-full flex-1 items-end rounded-sm bg-gray-100 dark:bg-white/10">
             <div
               className={`w-full rounded-sm ${color} transition-all`}
               style={{ height: `${Math.max(6, (d.value / max) * 100)}%` }}
@@ -69,7 +69,7 @@ export function ReportsPage() {
           <div className="flex h-48 items-end gap-3 pt-4" role="img" aria-label="Monthly issue chart">
             {monthly.map((m) => (
               <div key={m.month} className="flex flex-1 flex-col items-center gap-1.5">
-                <div className="flex h-36 w-full items-end justify-center gap-1 rounded-sm bg-gray-50 p-1.5">
+                <div className="flex h-36 w-full items-end justify-center gap-1 rounded-sm bg-gray-50 p-1.5 dark:bg-white/5">
                   <div className="w-full max-w-6 rounded-sm bg-primary-600" style={{ height: `${(m.issued / maxMonthly) * 100}%` }} title={`${m.month} issued: ${m.issued}`} />
                   <div className="w-full max-w-6 rounded-sm bg-emerald-500" style={{ height: `${(m.returned / maxMonthly) * 100}%` }} title={`${m.month} returned: ${m.returned}`} />
                 </div>
@@ -117,7 +117,7 @@ export function ReportsPage() {
               const pct = total === 0 ? 0 : Math.round((fineCollected / total) * 100);
               return (
                 <>
-                  <div className="h-3 overflow-hidden rounded-full bg-gray-100" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label="Fine collection rate">
+                  <div className="h-3 overflow-hidden rounded-full bg-gray-100 dark:bg-white/10" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label="Fine collection rate">
                     <div className="h-full rounded-full bg-emerald-500 transition-all" style={{ width: `${pct}%` }} />
                   </div>
                   <div className="mt-3 flex items-center justify-between text-[13px]">

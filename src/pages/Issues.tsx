@@ -103,7 +103,7 @@ export function IssuesPage() {
               <ArrowLeftRight size={15} aria-hidden="true" /> Issue book
             </Button>
           </form>
-          <div className="mt-4 rounded-md bg-gray-50 p-3 text-[12.5px] text-ink-500">
+          <div className="mt-4 rounded-md bg-gray-50 p-3 text-[12.5px] text-ink-500 dark:bg-white/5 dark:text-gray-400">
             Out-of-stock titles are hidden here. See the Books page for the full catalog.
           </div>
         </Card>
@@ -125,7 +125,7 @@ export function IssuesPage() {
             onChange={(e) => { setHistoryQ(e.target.value); setPage(1); }}
             placeholder="Search by book or member…"
             aria-label="Search issue history"
-            className="mt-3 w-full rounded-sm border border-gray-300 bg-white py-2 px-3 text-[13.5px] outline-none transition placeholder:text-gray-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-100"
+            className="mt-3 w-full rounded-sm border border-gray-300 bg-white py-2 px-3 text-[13.5px] outline-none transition placeholder:text-gray-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 dark:border-night-700 dark:bg-night-800 dark:text-gray-100"
           />
           {items.length === 0 ? (
             <div className="mt-2">
@@ -137,7 +137,7 @@ export function IssuesPage() {
             </div>
           ) : (
             <>
-              <ul className="anim-list-in mt-2 divide-y divide-gray-100">
+              <ul className="anim-list-in mt-2 divide-y divide-gray-100 dark:divide-white/10">
                 {items.map((i) => {
                   const book = books.find((b) => b.id === i.bookId);
                   const member = members.find((m) => m.id === i.memberId);

@@ -39,7 +39,7 @@ export function ForgotPage() {
             </span>
             <p className="t-subheading mt-3">Check your inbox</p>
             <p className="t-muted mt-1">
-              If <span className="font-semibold text-ink-900">{email}</span> is registered, a reset link is on its way (demo — no email is actually sent).
+              If <span className="font-semibold text-ink-900 dark:text-gray-100">{email}</span> is registered, a reset link is on its way (demo — no email is actually sent).
             </p>
             <Button variant="secondary" className="mt-4" onClick={() => setSent(false)}>
               Use a different email

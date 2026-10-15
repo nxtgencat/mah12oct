@@ -59,7 +59,7 @@ export function FinesPage() {
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search by member name or ID…"
               aria-label="Search fines by member"
-              className="w-full rounded-sm border border-gray-300 bg-white py-2 pl-9 pr-3 text-[13.5px] outline-none transition placeholder:text-gray-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-100"
+              className="w-full rounded-sm border border-gray-300 bg-white py-2 pl-9 pr-3 text-[13.5px] outline-none transition placeholder:text-gray-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 dark:border-night-700 dark:bg-night-800 dark:text-gray-100"
             />
           </div>
           {fineRecords.length === 0 ? (
@@ -71,7 +71,7 @@ export function FinesPage() {
           ) : filtered.length === 0 ? (
             <NoResults query={q} onClear={() => { setQ(""); setFilter("all"); }} />
           ) : (
-            <ul className="anim-list-in mt-2 divide-y divide-gray-100">
+            <ul className="anim-list-in mt-2 divide-y divide-gray-100 dark:divide-white/10">
               {filtered.map((f) => {
                 const book = books.find((b) => b.id === f.bookId);
                 const member = members.find((m) => m.id === f.memberId);

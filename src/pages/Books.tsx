@@ -124,7 +124,7 @@ export function BooksPage() {
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search title, author, ISBN…"
               aria-label="Search books"
-              className="w-full rounded-sm border border-gray-300 bg-white py-2 pl-9 pr-3 text-[13.5px] outline-none transition placeholder:text-gray-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-100"
+              className="w-full rounded-sm border border-gray-300 bg-white py-2 pl-9 pr-3 text-[13.5px] outline-none transition placeholder:text-gray-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 dark:border-night-700 dark:bg-night-800 dark:text-gray-100"
             />
           </div>
           <Select value={category} onChange={(e) => setCategory(e.target.value)} aria-label="Filter by category">
@@ -196,11 +196,11 @@ export function BooksPage() {
                   <p className="t-muted truncate">by {b.author}</p>
                   <p className="t-caption mt-1 truncate">ISBN {b.isbn}</p>
                   <p className="t-muted mt-2 line-clamp-2 text-[13px]">{b.description}</p>
-                  <div className="mt-3 flex items-center gap-1.5 border-t border-gray-100 pt-3">
+                  <div className="mt-3 flex items-center gap-1.5 border-t border-gray-100 pt-3 dark:border-white/10">
                     <Link
                       to={`/books/${b.id}`}
                       aria-label={`View ${b.title}`}
-                      className="inline-flex flex-1 items-center justify-center gap-1 rounded-sm border border-gray-300 bg-white px-2 py-1.5 text-[12.5px] font-semibold text-ink-700 transition hover:bg-gray-50"
+                      className="inline-flex flex-1 items-center justify-center gap-1 rounded-sm border border-gray-300 bg-white px-2 py-1.5 text-[12.5px] font-semibold text-ink-700 transition hover:bg-gray-50 dark:border-night-700 dark:bg-night-800 dark:text-gray-200 dark:hover:bg-night-700"
                     >
                       <Eye size={13} aria-hidden="true" /> View
                     </Link>
@@ -208,7 +208,7 @@ export function BooksPage() {
                       type="button"
                       onClick={() => setModal({ mode: "edit", book: b })}
                       aria-label={`Edit ${b.title}`}
-                      className="rounded-sm border border-gray-300 bg-white p-[7px] text-ink-700 transition hover:bg-gray-50"
+                      className="rounded-sm border border-gray-300 bg-white p-[7px] text-ink-700 transition hover:bg-gray-50 dark:border-night-700 dark:bg-night-800 dark:text-gray-200 dark:hover:bg-night-700"
                     >
                       <Pencil size={13} aria-hidden="true" />
                     </button>
@@ -216,7 +216,7 @@ export function BooksPage() {
                       type="button"
                       onClick={() => setDeleting(b)}
                       aria-label={`Delete ${b.title}`}
-                      className="rounded-sm border border-gray-300 bg-white p-[7px] text-red-600 transition hover:bg-red-50"
+                      className="rounded-sm border border-gray-300 bg-white p-[7px] text-red-600 transition hover:bg-red-50 dark:border-night-700 dark:bg-night-800 dark:hover:bg-red-500/10"
                     >
                       <Trash2 size={13} aria-hidden="true" />
                     </button>

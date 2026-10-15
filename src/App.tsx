@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-route
 import type { ReactNode } from "react";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { LibraryProvider } from "./context/LibraryContext";
+import { ThemeProvider } from "./context/ThemeContext";
 import { ToastProvider } from "./context/ToastContext";
 import { Layout } from "./components/Layout";
 import { LoginPage } from "./pages/auth/LoginPage";
@@ -34,6 +35,7 @@ function Shell({ children }: { children: ReactNode }) {
 
 export default function App() {
   return (
+    <ThemeProvider>
     <ToastProvider>
       <AuthProvider>
         <LibraryProvider>
@@ -57,5 +59,6 @@ export default function App() {
         </LibraryProvider>
       </AuthProvider>
     </ToastProvider>
+    </ThemeProvider>
   );
 }

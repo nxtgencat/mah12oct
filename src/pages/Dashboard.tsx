@@ -52,7 +52,7 @@ export function DashboardPage() {
             <Link to="/books" className="inline-flex items-center gap-1.5 rounded-sm bg-primary-700 px-4 py-2 text-[13.5px] font-semibold text-white shadow-subtle transition hover:bg-primary-800">
               <Plus size={15} aria-hidden="true" /> Add book
             </Link>
-            <Link to="/issues" className="inline-flex items-center gap-1.5 rounded-sm border border-gray-300 bg-white px-4 py-2 text-[13.5px] font-semibold text-ink-900 shadow-subtle transition hover:bg-gray-50">
+            <Link to="/issues" className="inline-flex items-center gap-1.5 rounded-sm border border-gray-300 bg-white px-4 py-2 text-[13.5px] font-semibold text-ink-900 shadow-subtle transition hover:bg-gray-50 dark:border-night-700 dark:bg-night-800 dark:text-gray-100 dark:hover:bg-night-700">
               Issue book
             </Link>
           </>
@@ -83,7 +83,7 @@ export function DashboardPage() {
               <Link
                 key={a.title}
                 to={a.to}
-                className="group flex items-center gap-3 rounded-md border border-gray-200 p-3.5 transition hover:border-primary-300 hover:shadow-medium"
+                className="group flex items-center gap-3 rounded-md border border-gray-200 p-3.5 transition hover:border-primary-300 hover:shadow-medium dark:border-white/10"
               >
                 <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-md text-white ${a.tone}`}>
                   <a.icon size={18} aria-hidden="true" />
@@ -97,17 +97,17 @@ export function DashboardPage() {
             ))}
           </div>
 
-          <div className="mt-5 border-t border-gray-100 pt-4">
+          <div className="mt-5 border-t border-gray-100 pt-4 dark:border-white/10">
             <div className="mb-3 flex items-center justify-between">
               <h3 className="t-subheading text-[14px]">Latest circulation</h3>
-              <Link to="/issues" className="text-[12.5px] font-semibold text-primary-700 hover:underline">
+              <Link to="/issues" className="text-[12.5px] font-semibold text-primary-700 hover:underline dark:text-primary-300">
                 View all
               </Link>
             </div>
             {recentIssues.length === 0 ? (
               <p className="t-muted">No circulation yet. Issue your first book to get started.</p>
             ) : (
-              <ul className="anim-list-in divide-y divide-gray-100">
+              <ul className="anim-list-in divide-y divide-gray-100 dark:divide-white/10">
                 {recentIssues.map((i) => (
                   <li key={i.id} className="flex items-center gap-3 py-2.5">
                     <span className={`h-2 w-2 shrink-0 rounded-full ${i.returnDate ? "bg-emerald-500" : i.dueDate < new Date().toISOString().slice(0, 10) ? "bg-red-500" : "bg-violet-500"}`} aria-hidden="true" />
@@ -133,7 +133,7 @@ export function DashboardPage() {
             </div>
           </div>
           {activities.length === 0 ? (
-            <div className="rounded-md bg-gray-50 p-4 text-center">
+            <div className="rounded-md bg-gray-50 p-4 text-center dark:bg-white/5">
               <p className="t-subheading text-[13.5px]">Quiet for now</p>
               <p className="t-muted mt-1">Actions like issuing books and adding members will appear here.</p>
             </div>

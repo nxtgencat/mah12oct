@@ -59,18 +59,18 @@ export function CategoriesPage() {
                   <Tags size={13} aria-hidden="true" /> {c.name}
                 </span>
                 <div className="flex gap-1.5">
-                  <button type="button" onClick={() => setModal({ mode: "edit", cat: c })} aria-label={`Edit ${c.name}`} className="rounded-sm border border-gray-200 bg-white p-1.5 text-ink-700 transition hover:bg-gray-50">
+                  <button type="button" onClick={() => setModal({ mode: "edit", cat: c })} aria-label={`Edit ${c.name}`} className="rounded-sm border border-gray-200 bg-white p-1.5 text-ink-700 transition hover:bg-gray-50 dark:border-night-700 dark:bg-night-800 dark:text-gray-200 dark:hover:bg-night-700">
                     <Pencil size={13} aria-hidden="true" />
                   </button>
-                  <button type="button" onClick={() => setDeleting(c)} aria-label={`Delete ${c.name}`} className="rounded-sm border border-gray-200 bg-white p-1.5 text-red-600 transition hover:bg-red-50">
+                  <button type="button" onClick={() => setDeleting(c)} aria-label={`Delete ${c.name}`} className="rounded-sm border border-gray-200 bg-white p-1.5 text-red-600 transition hover:bg-red-50 dark:border-night-700 dark:bg-night-800 dark:hover:bg-red-500/10">
                     <Trash2 size={13} aria-hidden="true" />
                   </button>
                 </div>
               </div>
               <p className="t-muted mt-2 min-h-[20px]">{c.description || "No description."}</p>
-              <div className="mt-3 flex items-center justify-between border-t border-gray-100 pt-3">
+              <div className="mt-3 flex items-center justify-between border-t border-gray-100 pt-3 dark:border-white/10">
                 <p className="t-caption">{counts.get(c.name) ?? 0} books</p>
-                <Link to={`/books`} className="text-[12.5px] font-semibold text-primary-700 hover:underline">
+                <Link to={`/books`} className="text-[12.5px] font-semibold text-primary-700 hover:underline dark:text-primary-300">
                   Browse shelf →
                 </Link>
               </div>

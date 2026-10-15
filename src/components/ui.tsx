@@ -9,8 +9,8 @@ const btnBase =
 
 const btnVariant: Record<BtnVariant, string> = {
   primary: "bg-primary-700 text-white hover:bg-primary-800 shadow-subtle",
-  secondary: "bg-white text-ink-900 border border-gray-300 hover:bg-gray-50 hover:border-gray-400 shadow-subtle",
-  ghost: "bg-transparent text-ink-700 hover:bg-gray-100",
+  secondary: "bg-white text-ink-900 border border-gray-300 hover:bg-gray-50 hover:border-gray-400 shadow-subtle dark:bg-night-800 dark:text-gray-100 dark:border-night-700 dark:hover:bg-night-700 dark:hover:border-gray-500",
+  ghost: "bg-transparent text-ink-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/10",
   danger: "bg-red-600 text-white hover:bg-red-700 shadow-subtle",
   success: "bg-emerald-600 text-white hover:bg-emerald-700 shadow-subtle",
 };
@@ -52,7 +52,7 @@ interface FieldProps {
 export function Field({ label, error, hint, required, children }: FieldProps) {
   return (
     <label className="block">
-      <span className="t-label mb-1.5 flex items-center gap-1 text-ink-700">
+      <span className="t-label mb-1.5 flex items-center gap-1 text-ink-700 dark:text-gray-300">
         {label}
         {required ? <span className="text-red-500" aria-hidden="true">*</span> : null}
       </span>
@@ -69,7 +69,7 @@ export function Field({ label, error, hint, required, children }: FieldProps) {
 }
 
 const inputCls = (error?: string) =>
-  `w-full rounded-sm border bg-white px-3 py-2 text-[14px] text-ink-900 placeholder:text-ink-400 transition shadow-subtle disabled:bg-gray-50 disabled:text-gray-500 ${
+  `w-full rounded-sm border bg-white px-3 py-2 text-[14px] text-ink-900 placeholder:text-ink-400 transition shadow-subtle disabled:bg-gray-50 disabled:text-gray-500 dark:bg-night-800 dark:border-night-700 dark:text-gray-100 dark:placeholder:text-gray-500 dark:disabled:bg-white/5 ${
     error
       ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-100"
       : "border-gray-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-100"
@@ -105,7 +105,7 @@ export function TextArea({ fieldError, className = "", ...rest }: TextAreaProps)
 
 export function Card({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
-    <div className={`rounded-md border border-gray-200 bg-white shadow-subtle ${className}`}>{children}</div>
+    <div className={`rounded-md border border-gray-200 bg-white shadow-subtle dark:border-white/10 dark:bg-night-900 ${className}`}>{children}</div>
   );
 }
 
@@ -162,7 +162,7 @@ export function EmptyState({
 }) {
   return (
     <div className="flex flex-col items-center justify-center px-6 py-14 text-center">
-      <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100 text-gray-400">
+      <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100 text-gray-400 dark:bg-white/10 dark:text-gray-500">
         {icon ?? <Inbox size={22} aria-hidden="true" />}
       </div>
       <p className="t-subheading">{title}</p>
@@ -174,9 +174,9 @@ export function EmptyState({
 
 export function ErrorState({ message, onRetry }: { message: string; onRetry?: () => void }) {
   return (
-    <div className="flex flex-col items-center justify-center rounded-md border border-red-200 bg-red-50/60 px-6 py-10 text-center">
+    <div className="flex flex-col items-center justify-center rounded-md border border-red-200 bg-red-50/60 px-6 py-10 text-center dark:border-red-500/30 dark:bg-red-500/10">
       <AlertCircle size={24} className="mb-2 text-red-500" aria-hidden="true" />
-      <p className="t-subheading text-red-800">Something went wrong</p>
+      <p className="t-subheading text-red-800 dark:text-red-200">Something went wrong</p>
       <p className="t-muted mt-1 max-w-[52ch]">{message}</p>
       {onRetry ? (
         <div className="mt-4">
@@ -191,7 +191,7 @@ export function ErrorState({ message, onRetry }: { message: string; onRetry?: ()
 
 export function Spinner({ label = "Loading…" }: { label?: string }) {
   return (
-    <div role="status" aria-label={label} className="flex items-center justify-center gap-2 py-10 text-ink-500">
+    <div role="status" aria-label={label} className="flex items-center justify-center gap-2 py-10 text-ink-500 dark:text-gray-400">
       <Loader2 size={20} className="animate-spin text-primary-600" aria-hidden="true" />
       <span className="t-muted">{label}</span>
     </div>
@@ -267,7 +267,7 @@ export function Pagination({
             className={`min-w-[34px] rounded-sm border px-2.5 py-1.5 text-[13px] font-semibold transition ${
               p === page
                 ? "border-primary-700 bg-primary-700 text-white"
-                : "border-gray-300 bg-white text-ink-700 hover:bg-gray-50"
+                : "border-gray-300 bg-white text-ink-700 hover:bg-gray-50 dark:border-night-700 dark:bg-night-800 dark:text-gray-200 dark:hover:bg-night-700"
             }`}
           >
             {p}
@@ -307,7 +307,7 @@ export function StatCard({
     <Card className="p-4 transition-shadow hover:shadow-medium">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <p className="t-label uppercase tracking-wide text-ink-500">{label}</p>
+          <p className="t-label uppercase tracking-wide text-ink-500 dark:text-gray-400">{label}</p>
           <p className="mt-1 text-[26px] font-bold leading-none tracking-tight">{value}</p>
           {sub ? <p className="t-caption mt-1.5">{sub}</p> : null}
         </div>

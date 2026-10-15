@@ -41,7 +41,7 @@ export function MemberProfilePage() {
         title={member.name}
         subtitle={`${member.membershipId} · Member since ${formatDate(member.joinedAt)}`}
         actions={
-          <Link to="/members" className="inline-flex items-center gap-1.5 rounded-sm border border-gray-300 bg-white px-3.5 py-2 text-[13px] font-semibold text-ink-700 shadow-subtle transition hover:bg-gray-50">
+          <Link to="/members" className="inline-flex items-center gap-1.5 rounded-sm border border-gray-300 bg-white px-3.5 py-2 text-[13px] font-semibold text-ink-700 shadow-subtle transition hover:bg-gray-50 dark:border-night-700 dark:bg-night-800 dark:text-gray-200 dark:hover:bg-night-700">
             <ArrowLeft size={14} aria-hidden="true" /> All members
           </Link>
         }
@@ -53,7 +53,7 @@ export function MemberProfilePage() {
           </div>
           <h2 className="t-heading mt-3 text-[17px]">{member.name}</h2>
           <p className="t-muted">{member.email}</p>
-          <dl className="mt-4 space-y-2.5 border-t border-gray-100 pt-4 text-[13.5px]">
+          <dl className="mt-4 space-y-2.5 border-t border-gray-100 pt-4 text-[13.5px] dark:border-white/10">
             <div><dt className="t-caption">Phone</dt><dd className="font-medium">{member.phone}</dd></div>
             <div><dt className="t-caption">Address</dt><dd className="flex items-start gap-1.5 font-medium"><MapPin size={14} className="mt-0.5 shrink-0 text-gray-400" aria-hidden="true" />{member.address}</dd></div>
             <div><dt className="t-caption">Membership ID</dt><dd className="font-mono text-[13px] font-semibold">{member.membershipId}</dd></div>
@@ -76,7 +76,7 @@ export function MemberProfilePage() {
           {mine.length === 0 ? (
             <EmptyState icon={<BookOpen size={22} aria-hidden="true" />} title="No loans yet" message="Books issued to this member will appear here." />
           ) : (
-            <ul className="anim-list-in mt-3 divide-y divide-gray-100">
+            <ul className="anim-list-in mt-3 divide-y divide-gray-100 dark:divide-white/10">
               {mine.map((i) => {
                 const book = books.find((b) => b.id === i.bookId);
                 const overdue = i.returnDate === null && i.dueDate < t;

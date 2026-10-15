@@ -43,11 +43,11 @@ export function Modal({
       }}
     >
       <div
-        className={`anim-dialog max-h-[92vh] w-full overflow-y-auto rounded-lg bg-white shadow-elevated ${
+        className={`anim-dialog max-h-[92vh] w-full overflow-y-auto rounded-lg bg-white shadow-elevated dark:bg-night-900 ${
           wide ? "max-w-2xl" : "max-w-lg"
         }`}
       >
-        <div className="sticky top-0 flex items-start justify-between gap-3 border-b border-gray-100 bg-white px-5 py-4">
+        <div className="sticky top-0 flex items-start justify-between gap-3 border-b border-gray-100 bg-white px-5 py-4 dark:border-white/10 dark:bg-night-900">
           <div>
             <h2 className="t-heading text-[17px]">{title}</h2>
             {subtitle ? <p className="t-muted mt-0.5">{subtitle}</p> : null}
@@ -56,7 +56,7 @@ export function Modal({
             type="button"
             onClick={onClose}
             aria-label="Close dialog"
-            className="rounded-sm p-1.5 text-gray-400 transition hover:bg-gray-100 hover:text-gray-700"
+            className="rounded-sm p-1.5 text-gray-400 transition hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-white/10 dark:hover:text-gray-200"
           >
             <X size={18} />
           </button>
@@ -84,7 +84,7 @@ export function ConfirmDialog({
 }) {
   return (
     <Modal open={open} title={title} onClose={onCancel}>
-      <p className="t-body text-ink-700">{message}</p>
+      <p className="t-body text-ink-700 dark:text-gray-300">{message}</p>
       <div className="mt-5 flex justify-end gap-2">
         <Button variant="secondary" onClick={onCancel}>
           Cancel

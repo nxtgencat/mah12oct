@@ -52,7 +52,7 @@ export function AuthShell({ title, subtitle, children }: { title: string; subtit
           </p>
         </div>
       </div>
-      <div className="flex items-center justify-center bg-paper px-4 py-10 sm:px-8">
+      <div className="flex items-center justify-center bg-paper px-4 py-10 dark:bg-night-950 sm:px-8">
         <div className="w-full max-w-[420px]">
           <div className="mb-6 flex items-center gap-2.5 lg:hidden">
             <span className="flex h-9 w-9 items-center justify-center rounded-md bg-primary-700 text-white">
@@ -73,7 +73,7 @@ export function AuthFooter({ text, linkText, to }: { text: string; linkText: str
   return (
     <p className="t-muted mt-6 text-center">
       {text}{" "}
-      <Link to={to} className="font-semibold text-primary-700 hover:text-primary-800 hover:underline">
+      <Link to={to} className="font-semibold text-primary-700 hover:text-primary-800 hover:underline dark:text-primary-300 dark:hover:text-primary-200">
         {linkText}
       </Link>
     </p>

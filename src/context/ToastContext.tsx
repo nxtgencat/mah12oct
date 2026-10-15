@@ -81,7 +81,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
             <div
               key={t.id}
               role="status"
-              className="anim-dialog pointer-events-auto flex items-start gap-3 overflow-hidden rounded-md border border-gray-200 bg-white shadow-elevated"
+              className="anim-dialog pointer-events-auto flex items-start gap-3 overflow-hidden rounded-md border border-gray-200 bg-white shadow-elevated dark:border-white/10 dark:bg-night-900"
             >
               <div className={`${bar[t.kind]} w-1 self-stretch`} aria-hidden="true" />
               <div className="flex flex-1 items-start gap-2.5 py-3 pr-1">
@@ -106,7 +106,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
                 type="button"
                 onClick={() => dismiss(t.id)}
                 aria-label="Dismiss notification"
-                className="mr-2 mt-2.5 rounded p-1 text-gray-400 transition hover:bg-gray-100 hover:text-gray-700"
+                className="mr-2 mt-2.5 rounded p-1 text-gray-400 transition hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-white/10 dark:hover:text-gray-200"
               >
                 <X size={15} />
               </button>
