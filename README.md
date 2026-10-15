@@ -1,6 +1,6 @@
 # Athena Library — Management System
 
-A responsive Library Management System built with **React + Vite + TypeScript + Tailwind CSS v4**, **Context API** state management, **React Router** navigation, and a live **DummyJSON** book catalog. All library data persists in `localStorage`.
+A responsive Library Management System built with **React + Vite + TypeScript + Tailwind CSS v4**, **Context API** state management, **React Router** navigation, and a live **DummyJSON** book catalog. All library data persists in `localStorage`. Includes light/dark theme support with a persisted topbar toggle.
 
 ## Demo credentials
 
@@ -19,6 +19,7 @@ A responsive Library Management System built with **React + Vite + TypeScript + 
 | **Fines** | Automatic $2/day overdue calculation, paid/unpaid toggle (UI-only), member search, overdue list |
 | **Categories** | Add/edit/delete with duplicate + in-use guards, shelf counts |
 | **Reports** | Circulation chart, category counts, overdue & collection summaries (demo data where noted) |
+| **Theme** | Light/dark mode toggle in the topbar, OS preference on first visit, choice persisted in `localStorage` |
 
 ## Stack
 
@@ -37,8 +38,8 @@ pnpm run preview  # serve the production build
 
 ## Data & persistence
 
-- Catalog: `https://dummyjson.com/products?limit=30` mapped to book records (cover, author, ISBN, publisher, category, year, copies). If the API is unreachable, a bundled 12-book catalog is used and an error banner with retry is shown.
-- `localStorage` keys: `lms_books_v1`, `lms_members_v1`, `lms_categories_v1`, `lms_issues_v1`, `lms_activities_v1`, `lms_users`, `lms_session`.
+- Catalog: `https://dummyjson.com/products?limit=30` mapped to book records (author, ISBN, publisher, category, year, copies). Covers are deterministic generated book art (no external images), so they always render; custom cover URLs are still supported per book. If the API is unreachable, a bundled 12-book catalog is used and an error banner with retry is shown.
+- `localStorage` keys: `lms_books_v2`, `lms_members_v1`, `lms_categories_v1`, `lms_issues_v1`, `lms_activities_v1`, `lms_users`, `lms_session`, `lms_theme`.
 - Loans run 14 days; overdue fines accrue at $2/day.
 
 ## Project structure
@@ -46,9 +47,9 @@ pnpm run preview  # serve the production build
 ```
 src/
   types.ts            # domain models
-  lib/                # api mapper, date/currency/storage utils
+  lib/                # api mapper, generated cover art, date/currency/storage utils
   data/seed.ts        # fallback books, members, categories, demo chart data
-  context/            # AuthContext, LibraryContext, ToastContext
+  context/            # AuthContext, LibraryContext, ThemeContext, ToastContext
   components/         # ui kit, Modal, Layout, forms
   pages/              # auth + 8 modules
   App.tsx             # providers + protected routes
